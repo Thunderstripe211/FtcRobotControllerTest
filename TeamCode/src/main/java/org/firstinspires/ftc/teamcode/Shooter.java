@@ -15,12 +15,55 @@ public class Shooter {
         opMode = opmode;
 
         hood = opMode.hardwareMap.get(Servo.class, "hood");
-
     }
 
     public void updateTelemetry()
-    {
+    {;
         opMode.telemetry.addData("Servo Position: ", hood.getPosition());
     }
 
+    public void increment()
+    {
+        hood.setPosition(hood.getPosition() + 0.05);
+    }
+
+    public void decrement()
+    {
+        hood.setPosition(hood.getPosition() - 0.05);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

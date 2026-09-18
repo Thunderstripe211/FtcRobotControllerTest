@@ -33,8 +33,26 @@ public class TestTeleop extends LinearOpMode {
                 intake.turnOffIntake();
             }
 
+            boolean skip = false;
+            if (gamepad1.right_bumper && skip == false)
+            {
+                shooter.increment();
+                skip = true;
+            }
+            else if (gamepad1.left_bumper && skip == false)
+            {
+                shooter.decrement();
+                skip = true;
+            }
+            else if (!gamepad1.left_bumper && !gamepad1.right_bumper)
+            {
+                skip = false;
+            }
+
             shooter.updateTelemetry();
             telemetry.update();
+
+
         }
     }
 }
