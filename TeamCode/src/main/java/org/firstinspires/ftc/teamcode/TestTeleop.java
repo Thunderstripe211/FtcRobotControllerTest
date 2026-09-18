@@ -11,6 +11,7 @@ public class TestTeleop extends LinearOpMode {
         
         Drivetrain drivetrain = new Drivetrain(this);
         Intake intake = new Intake(this);
+        Shooter shooter = new Shooter(this);
 
         waitForStart();
 
@@ -32,6 +33,8 @@ public class TestTeleop extends LinearOpMode {
                 intake.turnOffIntake();
             }
 
+            shooter.updateTelemetry();
+            telemetry.update();
         }
     }
 }
