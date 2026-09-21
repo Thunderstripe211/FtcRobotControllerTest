@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear OpMode")
 public class TestTeleop extends LinearOpMode {
@@ -34,21 +35,17 @@ public class TestTeleop extends LinearOpMode {
                 intake.turnOffIntake();
             }
 
+            if (gamepad1.x)
+            {
+                shooter.turnOn(3000.0);
+            }
+            else if (gamepad1.y)
+            {
+                shooter.turnOff();
+            }
 
-            if (gamepad1.right_bumper && skip == false)
-            {
-                shooter.increment();
-                skip = true;
-            }
-            else if (gamepad1.left_bumper && skip == false)
-            {
-                shooter.decrement();
-                skip = true;
-            }
-            else if (!gamepad1.left_bumper && !gamepad1.right_bumper)
-            {
-                skip = false;
-            }
+            shooter.incrementUsingGamepad();
+            shooter.updateGamepad(gamepad1);
 
             shooter.updateTelemetry();
             telemetry.update();
