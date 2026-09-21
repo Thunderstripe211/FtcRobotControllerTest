@@ -16,6 +16,7 @@ public class TestTeleop extends LinearOpMode {
         waitForStart();
 
         // run until the end of the match (driver presses STOP)
+        boolean skip = false;
         while (opModeIsActive())
         {
             drivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
@@ -33,7 +34,7 @@ public class TestTeleop extends LinearOpMode {
                 intake.turnOffIntake();
             }
 
-            boolean skip = false;
+
             if (gamepad1.right_bumper && skip == false)
             {
                 shooter.increment();
