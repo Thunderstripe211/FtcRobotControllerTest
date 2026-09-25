@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.IMU;
 
 public class Drivetrain {
 
@@ -13,6 +14,7 @@ public class Drivetrain {
     private DcMotor frontRight;
     private DcMotor intakeFront;
     private DcMotor intakeBack;
+    public IMU imu;
 
     private OpMode opMode;
 
@@ -32,18 +34,22 @@ public class Drivetrain {
 
         intakeBack.setDirection(DcMotorSimple.Direction.REVERSE);
     }
-    public void drive(double x, double y, double rx)
+    public void drive(double x, double y, double rx, double rT, double lT)
     {
+        double maxSpeed = 0.5;
+        double maxSpeedMultiplier;
+        maxSpeedMultiplier = maxSpeed + ((-rT * (maxSpeed * 0.5)) + (lT * maxSpeed));
+
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
         double frontLeftPower = (y + x + rx) / denominator;
         double backLeftPower = (y - x + rx) / denominator;
         double frontRightPower = (y - x - rx) / denominator;
         double backRightPower = (y + x - rx) / denominator;
 
-        backLeft.setPower(backLeftPower);
-        backRight.setPower(backRightPower);
-        frontLeft.setPower(frontLeftPower);
-        frontRight.setPower(frontRightPower);
+        backLeft.setPower(backLeftPower * maxSpeedMultiplier);
+        backRight.setPower(backRightPower * maxSpeedMultiplier);
+        frontLeft.setPower(frontLeftPower * maxSpeedMultiplier);
+        frontRight.setPower(frontRightPower* maxSpeedMultiplier);
     }
 
     public DcMotor getBackLeftL()

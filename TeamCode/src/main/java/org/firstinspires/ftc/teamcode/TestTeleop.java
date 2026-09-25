@@ -20,7 +20,7 @@ public class TestTeleop extends LinearOpMode {
         boolean skip = false;
         while (opModeIsActive())
         {
-            drivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+            drivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_trigger, gamepad1.left_trigger);
 
             if (gamepad1.a && !gamepad1.b)
             {
