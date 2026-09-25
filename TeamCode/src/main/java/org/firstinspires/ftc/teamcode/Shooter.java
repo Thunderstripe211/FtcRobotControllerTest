@@ -20,6 +20,7 @@ public class Shooter {
     private Gamepad previousGamepad = new Gamepad();
 
     private double hoodServoPosition = 0.0;
+    private boolean isOn = false;
 
     public Shooter(LinearOpMode opmode) {
         opMode = opmode;
@@ -61,18 +62,21 @@ public class Shooter {
     // Shooter Motor controls  |
     //                        \ /
 
-    public void turnOn(double rpm)
+    public void toggleShooter(double rpm)
     {
-        //rpm = 60, ticks per second = 28
-        double targetSpeed = rpm * 28.0/60.0;
-        ((DcMotorEx)leftShooterMotor).setVelocity(targetSpeed);
-        ((DcMotorEx)rightShooterMotor).setVelocity(targetSpeed);
-    }
-
-    public void turnOff()
-    {
-        ((DcMotorEx)leftShooterMotor).setVelocity(0);
-        ((DcMotorEx)rightShooterMotor).setVelocity(0);
+        isOn = !isOn;
+        if (isOn)
+        {
+            //rpm = 60, ticks per second = 28
+            double targetSpeed = rpm * 28.0/60.0;
+            ((DcMotorEx)leftShooterMotor).setVelocity(targetSpeed);
+            ((DcMotorEx)rightShooterMotor).setVelocity(targetSpeed);
+        }
+        else
+        {
+            ((DcMotorEx)leftShooterMotor).setVelocity(0);
+            ((DcMotorEx)rightShooterMotor).setVelocity(0);
+        }
     }
 
 }

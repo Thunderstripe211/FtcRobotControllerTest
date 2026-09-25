@@ -37,11 +37,7 @@ public class TestTeleop extends LinearOpMode {
 
             if (gamepad1.x)
             {
-                shooter.turnOn(3000.0);
-            }
-            else if (gamepad1.y)
-            {
-                shooter.turnOff();
+                shooter.toggleShooter(3000.0);
             }
 
             shooter.incrementUsingGamepad();
