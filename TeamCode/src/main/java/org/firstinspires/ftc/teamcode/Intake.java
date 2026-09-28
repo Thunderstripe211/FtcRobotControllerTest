@@ -23,28 +23,22 @@ public class Intake {
     }
     public void turnOnInput()
     {
+        //sets ball intake to half speed taking balls in
         intakeFront.setPower(0.5);
         intakeBack.setPower(0.5);
     }
     public void turnOnOutput()
     {
+        //sets ball intake to negative half speed to eject balls though intake
         intakeFront.setPower(-0.5);
         intakeBack.setPower(-0.5);
     }
-
     public void turnOffIntake()
     {
+        //sets ball intake power to zero
         intakeFront.setPower(0);
         intakeBack.setPower(0);
 
-    }
-    public DcMotor getIntakeFront()
-    {
-        return intakeFront;
-    }
-    public DcMotor getIntakeBack()
-    {
-        return intakeBack;
     }
 
 }

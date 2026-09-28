@@ -64,7 +64,10 @@ public class Shooter {
 
     public void toggleShooter(double rpm)
     {
-        isOn = !isOn;
+        if (currentGamepad.y && !previousGamepad.y){
+            isOn = !isOn;
+        }
+
         if (isOn)
         {
             //rpm = 60, ticks per second = 28

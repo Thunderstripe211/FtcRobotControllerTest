@@ -20,6 +20,13 @@ public class TestTeleop extends LinearOpMode {
         boolean skip = false;
         while (opModeIsActive())
         {
+            //resets imu yaw when x is pressed
+            if (gamepad1.x)
+            {
+                drivetrain.resetYaw();
+            }
+
+            //
             drivetrain.drive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x, gamepad1.right_trigger, gamepad1.left_trigger);
 
             if (gamepad1.a && !gamepad1.b)
@@ -35,10 +42,12 @@ public class TestTeleop extends LinearOpMode {
                 intake.turnOffIntake();
             }
 
-            if (gamepad1.x)
+            if (gamepad1.y)
             {
                 shooter.toggleShooter(3000.0);
             }
+
+            drivetrain.updateIMU();
 
             shooter.incrementUsingGamepad();
             shooter.updateGamepad(gamepad1);
